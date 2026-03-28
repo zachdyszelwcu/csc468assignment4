@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
 
-const mongoose = require('mongoose');
+const url = 'mongodb://mongodb:27017/sharkinfo';
 
-const MONGO_USERNAME = 'zachwcu';
-const MONGO_PASSWORD = 'zd991845';
-const MONGO_HOSTNAME = '127.0.0.1';
-const MONGO_PORT = '27017';
-const MONGO_DB = 'sharkinfo';
-
-
-const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
-
-mongoose.connect(url, {useNewUrlParser: true});
-
-
+mongoose.connect(url)
+  .then(() => {
+    console.log('MongoDB connected');
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
