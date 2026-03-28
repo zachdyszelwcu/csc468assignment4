@@ -1,14 +1,16 @@
 version: '3.8'
 
 services:
-  detection-api:
-    build: ./detection-api
+  mongodb:
+    image: mongo:6
+    container_name: mongo-db
     ports:
-      - "5000:5000"
+      - "27017:27017"
 
-  frontend:
-    build: ./frontend
+  web:
+    build: ./app
+    container_name: node-app
     ports:
-      - "8080:80"
+      - "8080:8080"
     depends_on:
-      - detection-api
+      - mongodb
